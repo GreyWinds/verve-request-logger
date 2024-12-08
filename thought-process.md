@@ -42,15 +42,6 @@ Areas of improvement:
 The validation of the input at handler can be done via json tags like "required". But wanted to be a little verbose here.
 The values for the redis client object like ports, db, password should ideally come from a config or from a secret store. Since this was local proj decided against it.
 
-Steps to run the service:
-docker network create verve-net
-docker build -t verve .
-docker run -p 6379:6379 --name redis --network verve-net redis
-docker run -p 8080:8080 --network verve-net verve
-
-To view the log file in stream:
-docker exec -it <container-name> /bin/sh
-tail -f unique_requests.log
-
+Note:
 Performance Testing done via the wrk framework:
 wrk -t12 -c400 -d1s 'http://localhost:8080/api/verve/accept?id=400'
